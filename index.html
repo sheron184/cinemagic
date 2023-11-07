@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src vue.global.js 'self' 'unsafe-eval' ">
+        <title>CineMagic</title>
+        <link rel="stylesheet" href="./assets/bootstrap.min.css">
+        <script src="./assets/vue.global.js"></script>
+        <script src="./assets/jquery-3.7.1.min.js"></script>
+        <link rel="stylesheet" href="./assets/global.css">
+    </head>
+    <body>
+        <div class="container-fluid mb-5">
+            <div class="row">
+                <div class="col-12 ps-0 pe-0">
+                    <nav class="p-3 bg-dark navbar-main">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div><h3 class="display-4 text-white heading">CineMagic</h3></div>
+                            <div><button id="folder-select" class="button-61">Select Folder</button></div>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        <div id="app">
+            <section v-if="!loading && renderComponent">
+                <div class="container">
+                    <div class="row justify-content-center mb-4">
+                        <div class="col-xl-4 col-lg-4 col-md-4 d-flex justify-content-end">
+                            <button class="content-btn position-relative" @click="displayMovies" :class="{ activeBtn: showMovies }">
+                                <span class="position-absolute btn-title text-white">Movies</span>
+                                <img src="./assets/movie.png" class="h-100 w-100" alt="movie">
+                            </button>
+                        </div>
+                        <div class="col-xl-4 col-lg-4 col-md-4">
+                            <button class="content-btn position-relative" :class="{ activeBtn: showTvs }" @click="displayTv">
+                                <span class="position-absolute btn-title text-white">Tv Shows</span>
+                                <img src="./assets/tv.png" class="h-100 w-100" alt="tv">
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row" v-if="showMovies">
+                        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12 mb-3" v-for="movie in movies">
+                            <div class="movie-card p-2 shadow-sm">
+                                <div class="position-relative h-100 p-2">
+                                    <h6 class="movie-name text-white">{{ movie }}</h6>
+                                    <button class="openfile btn btn-dark btn-sm px-1 py-0" :id="movie">Let's Watch</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" v-if="showTvs">
+                        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12 mb-3" v-for="tv in tvshows">
+                            <div class="movie-card p-2 shadow-sm">
+                                <div class="position-relative h-100 p-2">
+                                    <h6 class="movie-name text-white">{{ tv }}</h6>
+                                    <button class="openfile btn btn-dark btn-sm px-1 py-0" :id="tv">Let's Watch</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" v-if="movies.length === 0 && showMovies">
+                        <div>
+                            <h3 class="display-6 text-danger">No Movies found</h3>
+                        </div>
+                    </div>
+                    <div class="row" v-if="tvshows.length === 0 && showTvs">
+                        <div>
+                            <h3 class="display-6 text-danger">No Tv Shows found</h3>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section v-if="loading">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="d-flex justify-content-center">
+                                <div>
+                                    <div class="spinner-border text-primary" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <input type="hidden" id="tv">
+        <input type="hidden" id="movies">
+    </body>
+    <script src="./src/actions.js"></script>
+</html>
