@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "description": "My Electron application description",
   "main": "src/index.js",
+  "repository": "https://github.com/sheron184/cinemagic",
   "scripts": {
     "start": "electron-forge start",
     "package": "electron-forge package",
@@ -18,8 +19,10 @@
   },
   "license": "MIT",
   "dependencies": {
+    "@electron-forge/publisher-github": "^6.4.2",
     "electron-json-storage": "^4.6.0",
-    "electron-squirrel-startup": "^1.0.0"
+    "electron-squirrel-startup": "^1.0.0",
+    "update-electron-app": "^3.0.0"
   },
   "devDependencies": {
     "@electron-forge/cli": "^6.4.2",

@@ -3,7 +3,8 @@ const path = require('node:path');
 const fs = require('node:fs');
 const jsonData = require('./handleData');
 
-
+const { updateElectronApp } = require('update-electron-app')
+updateElectronApp();
 
 let win;
 

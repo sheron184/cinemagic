@@ -32,10 +32,11 @@ module.exports = {
       name: '@electron-forge/publisher-github',
       config: {
         repository: {
-          owner: 'sjtech',
+          owner: 'sheron184',
           name: 'cinemagic'
         },
-        prerelease: true
+        prerelease: true,
+        authToken: "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"
       }
     }
   ]
